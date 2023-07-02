@@ -13,3 +13,9 @@ class Movie(models.Model):
         ordering = ['-id']
 
 
+class Rating(models.Model):
+    movie = models.ForeignKey(Movie, related_name='ratings', on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', related_name='ratings', on_delete=models.CASCADE)
+    score = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
